@@ -1,18 +1,25 @@
 
 import 'dart:ui';
 
-import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension;
+import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension, Anchor;
 import 'package:flutter/material.dart';
 
 class Player extends PositionComponent {
-  // final speed = 30.0;
-  final _velocity = Vector2(0, 30.0);
+  Player({
+    this.playerRadious = 15,
+  });
+
+  final _velocity = Vector2(0, 0); // Vector2.zero();
   final _gravity = 980;
   final _jumpspeed = 300.0;
+  final double playerRadious;
 
   @override
   void onMount(){
-    position = Vector2(150,100);
+    position = Vector2(0,0);
+    size = Vector2.all(playerRadious * 2);
+    anchor = Anchor.center;
+    super.onMount();
   }
 
   @override
@@ -26,8 +33,9 @@ class Player extends PositionComponent {
   void render(Canvas canvas) {
     super.render(canvas);
     canvas.drawCircle(
-      position.toOffset(),
-      15,
+      // position.toOffset(),
+      (size/2).toOffset(),
+      playerRadious,
       Paint()..color = Colors.yellow,
     );
   }
