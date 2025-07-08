@@ -1,51 +1,8 @@
-import 'package:flame/components.dart';
-import 'package:flame/events.dart' show TapCallbacks, TapDownEvent;
-import 'package:flame/game.dart';
+
+import 'dart:ui';
+
+import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension;
 import 'package:flutter/material.dart';
-import 'package:flame/flame.dart';
-
-class GameHome extends StatefulWidget {
-  const GameHome({Key? key}) : super(key: key);
-
-  @override
-  State<GameHome> createState() => _GameHomeState();
-}
-
-class _GameHomeState extends State<GameHome> {
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Container();
-  // }
-  @override
-  Widget build(BuildContext context) {
-    return GameWidget(game: MyGame());
-  }
-}
-
-class MyGame extends FlameGame with TapCallbacks{
-  late Player myPlayer;
-
-  @override
-  Color backgroundColor() => const Color(0xff222222);
-
-  // @override
-  // void onGameResize(Vector2 size){
-  //   super.onGameResize(size);
-  //   print(size);
-  // }
-  @override
-  void onMount() {
-    add(myPlayer = Player());
-    super.onMount();
-  }
-
-  @override
-  void onTapDown(TapDownEvent event){
-    print('onTap Down Event');
-    myPlayer.jump();
-    super.onTapDown(event);
-  }
-}
 
 class Player extends PositionComponent {
   // final speed = 30.0;
@@ -62,16 +19,16 @@ class Player extends PositionComponent {
   void update(double dt) {
     super.update(dt);
     position += _velocity * dt;
-     _velocity.y += _gravity * dt;
+    _velocity.y += _gravity * dt;
   }
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
     canvas.drawCircle(
-        position.toOffset(),
-        15,
-        Paint()..color = Colors.yellow,
+      position.toOffset(),
+      15,
+      Paint()..color = Colors.yellow,
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smileapp/screens/game_play.dart';
 
-import 'game/game_home.dart';
+import 'games/colorswitchgame/game_home.dart';
 
 class GameGrid extends StatelessWidget {
   const GameGrid({super.key});
