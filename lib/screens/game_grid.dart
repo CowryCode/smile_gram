@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smileapp/screens/game_play.dart';
 
+import 'game/game_home.dart';
+
 class GameGrid extends StatelessWidget {
   const GameGrid({super.key});
 
@@ -102,8 +104,11 @@ class _GameCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
+        // Navigator.of(context).push(
+        //     MaterialPageRoute(builder: (context) => const GamePlayPanel())
+        // );
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const GamePlayPanel())
+            MaterialPageRoute(builder: (context) => const GameHome())
         );
       },
       child: Card(
