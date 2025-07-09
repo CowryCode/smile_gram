@@ -12,11 +12,24 @@ class Ground extends PositionComponent {
     key: ComponentKey.named(keyName),
         );
 
+  late Sprite fingerSprite;
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    fingerSprite = await Sprite.load('finger_tap.png');
+    //add(SpriteComponent(size: Vector2(100, 100), sprite: fingerSprite));
+  }
+
   @override
   void render(Canvas canvas) {
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, width, height),
-      Paint()..color = Colors.red,
+    // canvas.drawRect(
+    //   Rect.fromLTWH(0, 0, width, height),
+    //   Paint()..color = Colors.red,
+    // );
+    fingerSprite.render(
+        canvas,
+        position: Vector2(55,0),
+        size: Vector2(100, 100)
     );
   }
 }

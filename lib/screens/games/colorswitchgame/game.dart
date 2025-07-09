@@ -44,7 +44,7 @@ class MyGame extends FlameGame with TapCallbacks{
     world.add(myPlayer = Player(position: Vector2(0,250))); // camera has the world function so once we introduced camaera, we added word (Video 3)
 
     generateGameComponents();
-    debugMode = true;
+    //debugMode = true;
     super.onMount();
   }
 
