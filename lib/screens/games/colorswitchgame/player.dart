@@ -1,7 +1,7 @@
 
 import 'dart:ui';
 
-import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension, Anchor, HasGameRef, HasGameReference;
+import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension, Anchor, HasGameReference;
 import 'package:flame/src/components/core/component.dart';
 import 'package:flutter/material.dart';
 import 'package:smileapp/screens/games/colorswitchgame/ground.dart';
@@ -10,6 +10,7 @@ import 'game.dart';
 
 class Player extends PositionComponent with HasGameReference<MyGame> {
   Player({
+    required super.position,
     this.playerRadious = 15,
   });
 

@@ -5,12 +5,23 @@ import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/material.dart';
+import 'package:smileapp/screens/games/colorswitchgame/circle_rotator.dart';
 import 'package:smileapp/screens/games/colorswitchgame/ground.dart';
 import 'package:smileapp/screens/games/colorswitchgame/player.dart' show Player;
+
+
 class MyGame extends FlameGame with TapCallbacks{
   late Player myPlayer;
 
-  MyGame() : super(
+  List<Color> gameColors;
+
+  MyGame({this.gameColors = const [
+    Colors.redAccent,
+    Colors.purpleAccent,
+    Colors.blueAccent,
+    Colors.yellowAccent
+  ]}) : super(
       camera: CameraComponent.withFixedResolution(
           width: 600,
           height: 1000
@@ -30,12 +41,10 @@ class MyGame extends FlameGame with TapCallbacks{
     //add(myPlayer = Player());
     // world.add(RectangleComponent(position: Vector2(-1000, -1000), size: Vector2(99999,999999)));
     world.add(Ground(position: Vector2(0,400)));
-    world.add(myPlayer = Player()); // camera has the world function so once we introduced camaera, we added word (Video 3)
-    // world.add(RectangleComponent(position: Vector2(-100, -100), size: Vector2.all(20)));
-    // world.add(RectangleComponent(position: Vector2(-200, 100), size: Vector2.all(20)));
-    // world.add(RectangleComponent(position: Vector2(-300, 0), size: Vector2.all(20)));
-    // world.add(RectangleComponent(position: Vector2(200, 100), size: Vector2.all(20)));
-    // debugMode = true;
+    world.add(myPlayer = Player(position: Vector2(0,250))); // camera has the world function so once we introduced camaera, we added word (Video 3)
+
+    generateGameComponents();
+    debugMode = true;
     super.onMount();
   }
 
@@ -55,5 +64,12 @@ class MyGame extends FlameGame with TapCallbacks{
     print('onTap Down Event');
     myPlayer.jump();
     super.onTapDown(event);
+  }
+
+  void generateGameComponents() {
+    world.add(CircleRotator(
+      position: Vector2(0,0),
+      size: Vector2(200,200),
+    ));
   }
 }
