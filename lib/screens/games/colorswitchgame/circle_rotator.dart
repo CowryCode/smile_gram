@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import 'game.dart';
 import 'dart:math' as math;
@@ -10,10 +11,12 @@ class CircleRotator extends PositionComponent with HasGameReference<MyGame> {
     required super.position,
     required super.size,
     this.thickness = 8,
+    this.rotationSpeed = 2,
   })  : assert(size!.x == size!.y),
         super(anchor: Anchor.center);
 
   final double thickness;
+  final double rotationSpeed;
 
   @override
   void onLoad(){
@@ -30,6 +33,16 @@ class CircleRotator extends PositionComponent with HasGameReference<MyGame> {
       )
       );
     }
+    add(RotateEffect.to(math.pi * 2, EffectController(
+      speed: rotationSpeed,
+      infinite: true,
+    )));
+  }
+
+  @override
+  void update(double dt){
+    //angle += 0.1;
+    super.update(dt);
   }
 
   @override
