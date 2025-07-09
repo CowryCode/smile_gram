@@ -5,6 +5,7 @@ import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:smileapp/screens/games/colorswitchgame/ground.dart';
 import 'package:smileapp/screens/games/colorswitchgame/player.dart' show Player;
 class MyGame extends FlameGame with TapCallbacks{
   late Player myPlayer;
@@ -28,11 +29,12 @@ class MyGame extends FlameGame with TapCallbacks{
   void onMount() {
     //add(myPlayer = Player());
     // world.add(RectangleComponent(position: Vector2(-1000, -1000), size: Vector2(99999,999999)));
+    world.add(Ground(position: Vector2(0,400)));
     world.add(myPlayer = Player()); // camera has the world function so once we introduced camaera, we added word (Video 3)
-    world.add(RectangleComponent(position: Vector2(-100, -100), size: Vector2.all(20)));
-    world.add(RectangleComponent(position: Vector2(-200, 100), size: Vector2.all(20)));
-    world.add(RectangleComponent(position: Vector2(-300, 0), size: Vector2.all(20)));
-    world.add(RectangleComponent(position: Vector2(200, 100), size: Vector2.all(20)));
+    // world.add(RectangleComponent(position: Vector2(-100, -100), size: Vector2.all(20)));
+    // world.add(RectangleComponent(position: Vector2(-200, 100), size: Vector2.all(20)));
+    // world.add(RectangleComponent(position: Vector2(-300, 0), size: Vector2.all(20)));
+    // world.add(RectangleComponent(position: Vector2(200, 100), size: Vector2.all(20)));
     // debugMode = true;
     super.onMount();
   }

@@ -1,10 +1,14 @@
 
 import 'dart:ui';
 
-import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension, Anchor;
+import 'package:flame/components.dart' show PositionComponent, Vector2, Vector2Extension, Anchor, HasGameRef, HasGameReference;
+import 'package:flame/src/components/core/component.dart';
 import 'package:flutter/material.dart';
+import 'package:smileapp/screens/games/colorswitchgame/ground.dart';
 
-class Player extends PositionComponent {
+import 'game.dart';
+
+class Player extends PositionComponent with HasGameReference<MyGame> {
   Player({
     this.playerRadious = 15,
   });
@@ -26,7 +30,15 @@ class Player extends PositionComponent {
   void update(double dt) {
     super.update(dt);
     position += _velocity * dt;
-    _velocity.y += _gravity * dt;
+
+     Ground ground = game.findByKeyName(Ground.keyName) as Ground;
+
+     if(positionOfAnchor(Anchor.bottomCenter).y > ground.position.y){
+       _velocity.setValues(0,0);
+       position = Vector2(0, ground.position.y - (height / 2));
+     }else{
+       _velocity.y += _gravity * dt;
+     }
   }
 
   @override
